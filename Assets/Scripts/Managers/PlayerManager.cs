@@ -17,7 +17,8 @@ namespace TDS.Scripts.Player
         private PlayerShooting playerShooting;
         private EnemyDetection enemyDetection;
         private PlayerInputSystem playerInputSystem;
-        private PlayerHealth playerHealth;  
+        private PlayerHealth playerHealth;
+        private PlayerPoints playerPoints; //?
 
         /// <summary>
         /// Parametrs to settring in incpector
@@ -25,6 +26,8 @@ namespace TDS.Scripts.Player
         [Header("Player Settings")]
         [SerializeField] private int playerMaxHealth = 100;
         [SerializeField] private float _playerMoveSpeed = 40f;
+
+        [Header("Player Attack Settings")]
         [SerializeField] private float _fireSpeed = 10f;
         [SerializeField] private float _playerAttackRadius = 10f;
 
@@ -36,10 +39,13 @@ namespace TDS.Scripts.Player
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private Transform firePoint;
 
+        [Header("Enemy Layer")]
         [SerializeField] private LayerMask _enemyLayerMask;
 
+        [Header("Player UI Component")]
         [SerializeField] private Slider playerHealthSlider;
         [SerializeField] private PlayerUI playerUI;
+        [SerializeField] private Text pointsText; //?
 
         private void Awake()
         {
@@ -47,6 +53,7 @@ namespace TDS.Scripts.Player
             enemyDetection = GetComponent<EnemyDetection>();
             playerInputSystem = GetComponent<PlayerInputSystem>();
             playerHealth = GetComponent<PlayerHealth>();
+            playerPoints = GetComponent<PlayerPoints>(); //?
         }
 
         private void Start()
@@ -55,6 +62,7 @@ namespace TDS.Scripts.Player
             enemyDetection.Initialize(_playerAttackRadius, _enemyLayerMask);
             playerInputSystem.Initialize(_playerMoveSpeed);
             playerHealth.Initialize(playerHealthSlider, playerUI, playerMaxHealth);
+            playerPoints.Initialize(this); //?
         }
 
         private void Update()
@@ -63,6 +71,7 @@ namespace TDS.Scripts.Player
             playerShooting.HandleShooting(nearestEnemy);
             playerInputSystem.HandleMovement();
         }
+
     }
 
 }

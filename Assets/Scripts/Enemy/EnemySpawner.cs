@@ -9,16 +9,24 @@ namespace TDS.Scripts.Enemy
 {
     public class EnemySpawner : MonoBehaviour
     {
+        [Header("Prefabs")]
         [SerializeField] private GameObject[] _enemyPrefabs;
         [SerializeField] private GameObject _bossPrefab;
+
+        [Header("Enemy Settings")]
         [SerializeField] private EnemySettings[] _enemySettings;
         [SerializeField] private EnemySettings _bossSettings;
+        
+        [Header("Enemy SpawnPoints")]
         [SerializeField] Transform[] _spawnPoints;
 
+        [Header("Wave settings")]
         [SerializeField] private float _timeBetweenWaves = 5f;
         [SerializeField] private Wave[] waves;
 
+        [Header("UI Component")]
         [SerializeField] private Text _waveText;
+        [SerializeField] private Text _points;
 
         private int currentWaveIndex = 0;
 
@@ -84,6 +92,7 @@ namespace TDS.Scripts.Enemy
         {
             _waveText.text = "Wave " + (currentWaveIndex + 1);
         }
+
 
         [Serializable]
         public class Wave

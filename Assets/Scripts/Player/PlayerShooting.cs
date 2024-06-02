@@ -38,5 +38,10 @@ namespace TDS.Scripts.Player
                 bullet.Seek(target);
             }
         }
+
+        public void SetAttackSpeed(float newFireSpeed)
+        {
+            fireSpeed = newFireSpeed;
+        } //?
     }
 }

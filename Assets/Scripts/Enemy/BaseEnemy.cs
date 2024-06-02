@@ -83,6 +83,12 @@ namespace TDS.Scripts.Enemy
             {
                 enemyManager.UnregisterEnemy(this);
             }
+
+            PlayerManager playerManager= FindObjectOfType<PlayerManager>();
+            if(playerManager != null)
+            {
+                playerManager.AddPoints(1);
+            }
         }
         
         protected virtual void OnCollisionEnter2D(Collision2D collision)
